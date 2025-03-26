@@ -7,12 +7,16 @@ skip-lint = false
 [programs.localnet]
 solana_dex_arbitrage = "kjsutC39nSzGk4FiATA79QdrbiYkKzRRcyh9FQmC1DP"
 
+[programs.devnet]
+solana_dex_arbitrage = "kjsutC39nSzGk4FiATA79QdrbiYkKzRRcyh9FQmC1DP"
+
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
 cluster = "devnet"
 wallet = "~/.config/solana/id.json"
+rpc = "https://api.devnet.solana.com"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

@@ -102,10 +102,25 @@ fn simulate_trade(
 }
 
 fn trade_on_dex_a(ctx: &Context<ExecuteArbitrage>, amount_in: u64, max_slippage_bps: u64) -> Result<u64> {
-    // 实现与 DEX A 的交互（此处为伪代码）
-    let output = calculate_output(ctx.accounts.pool_a.reserves_a, ctx.accounts.pool_a.reserves_b, amount_in, max_slippage_bps)?;
-    // 更新池子状态和用户账户（需要调用 DEX 程序）
-    Ok(output)
+    let swap_instruction = swap(
+        &ctx.accounts.raydium_program.key(),
+        &ctx.accounts.raydium_pool.key(),
+        &ctx.accounts.user_token_a.key(),
+        &ctx.accounts.user_token_b.key(),
+        amount_in,
+        // 其他参数，如最小输出金额（基于滑点）
+    )?;
+    invoke(
+        &swap_instruction,
+        &[
+            ctx.accounts.raydium_pool.to_account_info(),
+            ctx.accounts.user_token_a.to_account_info(),
+            ctx.accounts.user_token_b.to_account_info(),
+            // 其他账户
+        ],
+    )?;
+    // 返回实际输出金额（需从池状态或事件日志中解析）
+    Ok(output_amount)
 }
 
 fn trade_on_dex_b(ctx: &Context<ExecuteArbitrage>, amount_in: u64, max_slippage_bps: u64) -> Result<u64> {
