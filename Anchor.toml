@@ -4,11 +4,12 @@
 resolution = true
 skip-lint = false
 
-[programs.localnet]
-solana_dex_arbitrage = "kjsutC39nSzGk4FiATA79QdrbiYkKzRRcyh9FQmC1DP"
-
 [programs.devnet]
 solana_dex_arbitrage = "kjsutC39nSzGk4FiATA79QdrbiYkKzRRcyh9FQmC1DP"
+orca = "9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP"
+meteora = "MERLuDFBMmsHnsBPZw2sDQZHvJsm3fk3dngFXkQV4i"
+serum = "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin"
+# raydium = "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"  # 注释掉，后续主网测试时启用
 
 [registry]
 url = "https://api.apr.dev"
